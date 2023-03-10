@@ -16,7 +16,7 @@ struct FrameworkGridView: View {
                                GridItem(.flexible())]
     
     var body: some View {
-        NavigationView {
+        NavigationView {        
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(MockData.frameworks) { framework in
@@ -30,7 +30,10 @@ struct FrameworkGridView: View {
             }
             .navigationTitle("Frameworks")
             .sheet(isPresented: $viewModel.isShowingDetailView) {
-                FrameworkDetailView(framework: viewModel.selectedFramework ?? MockData.sampleFramework, isShowingDetailView: $viewModel.isShowingDetailView)
+                FrameworkDetailView(framework: viewModel.selectedFramework ??
+                                    MockData.sampleFramework,
+                                    isShowingDetailView:
+                                        $viewModel.isShowingDetailView)
             }
         }
     }
